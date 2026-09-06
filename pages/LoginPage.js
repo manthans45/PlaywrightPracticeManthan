@@ -1,4 +1,5 @@
-class LoginPage {
+const LOGIN_PATH = '/#/auth/login'
+class LoginPage{
 
     constructor(page) {
 
@@ -13,7 +14,7 @@ class LoginPage {
 
     async navigateToLoginPage() {
 
-        await this.page.goto('/');
+        await this.page.goto(LOGIN_PATH);
 
     }
 

@@ -11,6 +11,18 @@ on:
       - main
 
   workflow_dispatch:
+    workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select environment'
+        required: true
+        default: 'qa'
+        type: choice
+        options:
+          - dev
+          - qa
+          - uat
+          - prod
 
 jobs:
 

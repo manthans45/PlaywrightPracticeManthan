@@ -8,7 +8,11 @@
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
     "test:login": "playwright test tests/login/login.spec.js",
-    "report": "playwright show-report"
+    "report": "playwright show-report",
+    "test:dev": "cross-env ENV=dev playwright test",
+    "test:qa": "cross-env ENV=qa playwright test",
+    "test:uat": "cross-env ENV=uat playwright test",
+    "test:prod": "cross-env ENV=prod playwright test"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +20,8 @@
   "devDependencies": {
     "@playwright/test": "^1.53.0",
     "@types/node": "^24.0.1",
-    "allure-playwright": "^3.2.2"
+    "allure-playwright": "^3.2.2",
+    "cross-env": "^10.1.0"
   },
   "dependencies": {
     "D": "^1.0.0",
