@@ -22,8 +22,8 @@ jobs:
 
     env:
       BASE_URL: https://rahulshettyacademy.com/client
-      TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
-      TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+      TEST_USERNAME: ${{secrets.TEST_USERNAME}}
+      TEST_PASSWORD: ${{secrets.TEST_PASSWORD}}
 
     steps:
 
