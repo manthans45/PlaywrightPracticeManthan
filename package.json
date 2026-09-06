@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:login": "playwright test tests/login/login.spec.js",
+    "report": "playwright show-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -13,6 +19,7 @@
     "allure-playwright": "^3.2.2"
   },
   "dependencies": {
-    "D": "^1.0.0"
+    "D": "^1.0.0",
+    "dotenv": "^17.4.2"
   }
 }
