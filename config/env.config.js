@@ -1,6 +1,8 @@
 const dotenv = require('dotenv');
 
-dotenv.config();
+if (!process.env.CI) {
+    dotenv.config();
+}
 
 const config = {
     baseUrl: process.env.BASE_URL,
