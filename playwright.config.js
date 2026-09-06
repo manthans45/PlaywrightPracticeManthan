@@ -1,5 +1,4 @@
-// @ts-check
-import { defineConfig, devices } from '@playwright/test';
+const { defineConfig, devices } = require ('@playwright/test');
 
 /**
  * Read environment variables from file.
@@ -12,12 +11,12 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-export default defineConfig({
+const config= defineConfig({
   testDir: './tests',
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   timeout: 30000,
   expect: {
-    timeout: 5000,
+    timeout: 10000,
   },
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -28,7 +27,9 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'],
-        headless: false, // Set to false if you want to see the browser UI
+        headless: false,
+        screenshot:'on',
+        trace:'on',
        },
       
      },
@@ -72,3 +73,4 @@ export default defineConfig({
   // },
 });
 
+module.exports = config

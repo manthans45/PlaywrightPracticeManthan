@@ -1,6 +1,6 @@
 const {test,expect} = require('@playwright/test')
 
-test.only("Child Windows Test", async ({browser})=>{
+test("Child Windows Test", async ({browser})=>{
  
   const context = await browser.newContext();
   const page = await context.newPage();
@@ -23,5 +23,5 @@ test.only("Child Windows Test", async ({browser})=>{
   // console.log(text)
   await username.fill(domain)
   await page.pause()
-  console.log(await username.textContent())
+  console.log(await username.inputValue())
   })

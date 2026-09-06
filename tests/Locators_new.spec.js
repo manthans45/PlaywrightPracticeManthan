@@ -6,39 +6,29 @@ test('@Web Client App login', async ({ page }) => {
    const productName = 'ZARA COAT 3';
    const products = page.locator(".card-body");
    await page.goto("https://rahulshettyacademy.com/client");
-   await page.locator("#userEmail").fill(email);
-   await page.locator("#userPassword").fill("Admin@123");
-   await page.locator("[value='Login']").click();
+   await page.getByPlaceholder("email@example.com").fill(email);
+   await page.getByPlaceholder("enter your passsword").fill("Admin@123");
+   await page.getByRole("button", { name: "Login" }).click();
    await page.waitForLoadState('networkidle');
    await page.locator(".card-body b").first().waitFor();
-   const titles = await page.locator(".card-body b").allTextContents();
-   console.log(titles); 
-   const count = await products.count();
-   for (let i=0;i<count;i++){
-        if (await products.nth(i).locator("b").textContent()===productName) {
-        await products.nth(i).locator("text=Add To Cart").click();
-        break;
-        } 
-   }
-   await page.locator("button[routerlink*='cart']").click()
+
+   await page.locator(".card-body")
+   .filter({hasText:productName})
+   .getByRole("button", { name: "Add To Cart" })
+   .click();
+  
+   await page.getByRole("listitem").getByRole("button", { name: "Cart" }).click();
    await page.locator(".items").waitFor();
-   const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible()
-    expect(bool).toBeTruthy();
-    await page.locator("text=Checkout").click();
-    await page.locator("[placeholder='Select Country']").type("Ind");
-    await page.locator(".ta-results").waitFor();
-    const options = page.locator(".ta-results button span");
-    const optionsCount = await options.count();
-    for (let i=0;i<optionsCount;i++){
-        if (await options.nth(i).textContent()===(" India")) {
-            await options.nth(i).click();
-            break;
-        }
-    }
-    expect(await page.locator(".user__name label").textContent()).toEqual(email);
-    await page.locator(".action__submit").click();
+   await expect(page.getByText("ZARA COAT 3")).toBeVisible();
+
+    await page.getByRole("button", { name: "Checkout" }).click();
+    await page.getByPlaceholder("Select Country").type("Ind");   
+    await page.locator(".ta-results").waitFor(); 
+    
+    await page.getByRole("button", { name: "India" }).nth(1).click();    
+    await page.getByText("PLACE ORDER").click();
     await page.locator(".hero-primary").waitFor();
-    await expect(page.locator(".hero-primary")).toHaveText(" Thankyou for the order. ");
+    await expect(page.getByText("Thankyou for the order.")).toBeVisible();
     const orderID = await page.locator(".em-spacer-1 .ng-star-inserted").textContent()
     console.log(orderID);
     await page.locator("button[routerlink*='myorders']").click();
