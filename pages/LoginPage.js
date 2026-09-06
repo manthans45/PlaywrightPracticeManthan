@@ -1,4 +1,4 @@
-const LOGIN_PATH = '/#/auth/login'
+const LOGIN_PATH = '#/auth/login'
 class LoginPage{
 
     constructor(page) {
